@@ -10,6 +10,10 @@ const Main: React.FC = () => {
   const [selectedTaskItem, setselectedTaskItem] = useState<Task | null>(null);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
+    resetSelectedTaskItem();
+  };
+  const addTask = () => {
+    setIsModalOpen((prev) => !prev);
   };
   const addItem = (item: Task) => {
     setTasksList((prevTasksList) => [...prevTasksList, item]);
@@ -34,8 +38,8 @@ const Main: React.FC = () => {
   };
   return (
     <div>
-      <button onClick={toggleModal}>Add task</button>
-      <Modal isOpen={isModalOpen}>
+      <button onClick={addTask}>Add task</button>
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
         <Form
           close={toggleModal}
           addItem={addItem}

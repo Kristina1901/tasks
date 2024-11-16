@@ -9,6 +9,7 @@ export interface Task {
 export interface ModalProps {
   isOpen: boolean;
   children: ReactNode;
+  onClose: () => void;
 }
 export interface FormProps {
   close: () => void;
