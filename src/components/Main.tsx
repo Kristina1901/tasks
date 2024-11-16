@@ -35,7 +35,7 @@ const Main: React.FC = () => {
   return (
     <div>
       <button onClick={toggleModal}>Add task</button>
-      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+      <Modal isOpen={isModalOpen}>
         <Form
           close={toggleModal}
           addItem={addItem}

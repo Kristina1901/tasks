@@ -4,7 +4,7 @@ import { TaskItemProps } from "../interfaces";
 const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onEdit }) => {
   return (
     <li className="border-b border-gray-300 py-2 flex justify-between items-center rounded px-2 bg-white mb-4 max-h-16 overflow-hidden">
-      <div className="flex justify-between items-center overflow-hidden xl:w-4/5 h-12">
+      <div className="flex justify-between items-center overflow-hidden xl:w-4/5  h-full">
         <h3 className="text-lg font-semibold min-w-32	mr-2">{task.name}</h3>
         <span
           className={`${
@@ -14,7 +14,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, onEdit }) => {
           {task.status}
         </span>
         <span className="mr-2 hidden xl:block min-w-32">{task.file?.name}</span>
-        <p className="hidden lg:block break-words xl:w-2/5 min-h-full	">
+        <p className="hidden lg:block break-words xl:w-2/5">
           {task.description}
         </p>
       </div>

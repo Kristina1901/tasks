@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect, useId } from "react";
+import React, { ChangeEvent, useState, useEffect, useId, useMemo } from "react";
 import { FormProps } from "../interfaces";
 
 const Form: React.FC<FormProps> = ({
@@ -9,14 +9,16 @@ const Form: React.FC<FormProps> = ({
   updateTasksList,
 }) => {
   const id = useId();
-  const initialFormData = {
-    id: id,
-    name: "",
-    description: "",
-    status: "not completed",
-    file: null as File | null,
-  };
-
+  const initialFormData = useMemo(
+    () => ({
+      id: id,
+      name: "",
+      description: "",
+      status: "not completed",
+      file: null as File | null,
+    }),
+    [id]
+  );
   const [formData, setFormData] = useState(initialFormData);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isEditFile, setisEditFile] = useState<boolean>(false);
@@ -63,14 +65,14 @@ const Form: React.FC<FormProps> = ({
     } else {
       setFormData(initialFormData);
     }
-  }, [selectedTaskItem]);
+  }, [selectedTaskItem, initialFormData]);
 
   useEffect(() => {
     const isFormValid =
       formData.name.trim() !== initialFormData.name &&
       formData.description.trim() !== initialFormData.description;
     setIsValid(isFormValid);
-  }, [formData]);
+  }, [formData, initialFormData]);
 
   return (
     <form className="flex flex-col mt-16" onSubmit={handleSubmit}>
